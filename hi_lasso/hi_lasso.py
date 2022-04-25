@@ -12,8 +12,9 @@ from scipy.stats import binom
 from tqdm import tqdm
 import numpy as np
 import math
+from sklearn.base import BaseEstimator
 
-class HiLasso:
+class HiLasso(BaseEstimator):
     """
     Hi-LASSO(High-Demensinal LASSO) is to improve the LASSO solutions for extremely high-dimensional data. 
     
@@ -224,3 +225,4 @@ class HiLasso:
         # pi: the average of the selcetion ratio of all predictor variables in B boostrap samples.
         pi = d_j.sum() / not_null.sum().sum()
         return binom.sf(d_j - 1, n=self.B, p=pi)
+
