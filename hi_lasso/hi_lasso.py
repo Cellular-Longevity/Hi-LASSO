@@ -143,6 +143,23 @@ class HiLasso:
         self.intercept_ = np.average(self.y) - np.average(self.X, axis=0) @ self.coef_
         return self
 
+    def predict(self, X):
+        """
+        Predict using coef_ and intercept_
+
+        Parameters
+        ----------
+        X : array-like or sparse matrix, shape (n_samples, n_features)
+            Samples.
+        Returns
+        -------
+        C : array, shape (n_samples,)
+            Returns predicted values.
+        """
+        C = np.matmul(X, self.coef_) + self.intercept_
+
+        return C
+
     def _bootstrapping(self, mode):
         """
         Apply different methods and q according to 'mode' parameter.
